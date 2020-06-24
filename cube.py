@@ -4,8 +4,8 @@ from pygame.math import Vector3
 
 class Cube:
 
-    def __init__(self, vectors, screen_width, screen_height, initial_angle=25):
-        self.vertices, self.angle, self.screen_width, self.screen_height = vectors, initial_angle, screen_width, screen_height
+    def __init__(self, vectors, screen_width, screen_height):
+        self.vertices, self.screen_width, self.screen_height = vectors, screen_width, screen_height
 
         # Define the vectors that compose each of the 6 faces
         self.faces = [(0,1,2,3),
@@ -22,13 +22,6 @@ class Cube:
                        (0x9f,0xb7,0x98),
                        (0xdb,0x29,0x55)]
 
-        tmp = []
-        for vector in self.vertices:
-            rotated_vector = vector.rotate_x(initial_angle).rotate_y(initial_angle).rotate_z(initial_angle)
-            tmp.append(rotated_vector)
-
-        self.vertices = tmp
-
     def transform_vectors(self, new_angle_x, new_angle_y):
         # It will hold transformed vectors.
         transformed_vectors = []
@@ -38,7 +31,7 @@ class Cube:
             mod_vector = vector.rotate_x(new_angle_x)
             mod_vector = mod_vector.rotate_y(new_angle_y)
             # Transform the point from 3D to 2D
-            mod_vector = self.project(mod_vector, self.screen_width, self.screen_height, 512, 2)
+            mod_vector = self.project(mod_vector, self.screen_width, self.screen_height, 512, 5)
             # Put the point in the list of transformed vectors
             transformed_vectors.append(mod_vector)
 
@@ -69,17 +62,15 @@ pygame.init()
 
 screen = pygame.display.set_mode((400, 600))
 
-clock = pygame.time.Clock()
-
 cube = Cube([
-    Vector3(0, 0.5, -0.5),
-    Vector3(0.5, 0.5, -0.5),
-    Vector3(0.5, 0, -0.5),
-    Vector3(0, 0, -0.5),
-    Vector3(0, 0.5, 0),
-    Vector3(0.5, 0.5, 0),
-    Vector3(0.5, 0, 0),
-    Vector3(0, 0, 0)
+    Vector3(-1, 1, -1),
+    Vector3(1, 1, -1),
+    Vector3(1, -1, -1),
+    Vector3(-1, -1, -1),
+    Vector3(-1, 1, 1),
+    Vector3(1, 1, 1),
+    Vector3(1, -1, 1),
+    Vector3(-1, -1, 1)
 ], screen.get_width(), screen.get_height())
 
 running = True
@@ -90,7 +81,6 @@ while running:
 
     (x,y) = pygame.mouse.get_pos()
 
-    clock.tick(50)
     screen.fill((0,0,0))
 
     polygons = []
