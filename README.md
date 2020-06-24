@@ -6,5 +6,4 @@
 - added mouse rotation
 - Added colors from [coolors.co](https://coolors.co/eeeeff-7f7caf-9fb4c7-28587b-9fb798-db2955)
 
-#TODO:
-- rotation from the center
+![](demo.gif)
