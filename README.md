@@ -1,6 +1,6 @@
 # 3D Cube
 - Uses python and pygame library
-- Original inspiration come from [stack overflow](https://stackoverflow.com/questions/56285017/pygame-rotating-cubes-around-axis)
+- Original inspiration come from [stack overflow](https://stackoverflow.com/questions/20477549/python-3d-cube-with-4-perspectives)
 - simplified the code base
 - added colors
 - added mouse rotation
